@@ -51,7 +51,6 @@ const Loja = () => {
   return (
     <div className="loja-container">
       <div className="loja-header">
-        <button className="hamburger">☰</button>
         <h2>Configurações da Loja</h2>
       </div>
       

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Menu from './components/Menu/Menu';
 import Dashboard from './components/Dashboard/Dashboard';
 import CadastroProdutos from './components/CadastroProdutos/CadastroProdutos';
-import TabelaRelatorios from './components/TabelaRelatorios/TabelaRelatorios';
+import Relatorio from './components/Relatorio/Relatorio';
+import TabelaVendas from './components/TabelaVendas/TabelaVendas';
 import Loja from './components/Loja/Loja';
 import './index.css';
 
@@ -14,9 +15,9 @@ function App() {
       case 'home':
         return <Dashboard />;
       case 'relatorio':
-        return <TabelaRelatorios />;
+        return <Relatorio />;
       case 'vendas':
-        return <div className="screen-placeholder">Tela de Vendas em desenvolvimento</div>;
+        return <TabelaVendas />;
       case 'produtos':
         return <CadastroProdutos />;
       case 'loja':

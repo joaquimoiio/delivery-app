@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './TabelaRelatorios.css';
+import './TabelaVendas.css';
 
-const TabelaRelatorios = () => {
+const TabelaVendas = () => {
   const [dados] = useState([
     { id: 1, cliente: 'João Silva', valor: 'R$ 150,00', dataHora: '28/05/2025 14:30', situacao: 'Concluído' },
     { id: 2, cliente: 'Maria Santos', valor: 'R$ 280,00', dataHora: '28/05/2025 13:15', situacao: 'Pendente' },
@@ -32,7 +32,6 @@ const TabelaRelatorios = () => {
   return (
     <div className="tabela-relatorios">
       <div className="tabela-header">
-        <button className="hamburger">☰</button>
         <h2>Relatórios de Vendas</h2>
       </div>
       
@@ -79,4 +78,4 @@ const TabelaRelatorios = () => {
   );
 };
 
-export default TabelaRelatorios;
+export default TabelaVendas;

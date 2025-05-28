@@ -169,6 +169,24 @@
   text-transform: capitalize;
 }
 
+.preview-description {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 0.9rem;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+  line-height: 1.4;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.preview-description:focus {
+  outline: none;
+}
+
 @media (max-width: 768px) {
   .cadastro-content {
     grid-template-columns: 1fr;
