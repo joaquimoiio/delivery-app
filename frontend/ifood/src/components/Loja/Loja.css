@@ -1,10 +1,10 @@
-.cadastro-produtos {
+.loja-container {
   flex: 1;
   background-color: #2d2d2d;
   min-height: 100vh;
 }
 
-.cadastro-header {
+.loja-header {
   padding: 1rem;
   border-bottom: 1px solid #444;
   background-color: #2a2a2a;
@@ -13,33 +13,30 @@
   gap: 1rem;
 }
 
-.cadastro-header h2 {
+.loja-header h2 {
   color: white;
   font-size: 1.2rem;
   font-weight: 400;
 }
 
-.cadastro-content {
+.loja-content {
   padding: 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-.produto-form {
+.loja-form-section {
   background-color: #3a3a3a;
   padding: 2rem;
   border-radius: 8px;
   border: 1px solid #555;
 }
 
-.produto-form h2 {
-  color: white;
-  margin-bottom: 1.5rem;
-  font-size: 1.3rem;
-  font-weight: 400;
+.loja-form {
+  width: 100%;
 }
 
 .form-row {
@@ -52,9 +49,14 @@
   gap: 1rem;
 }
 
+.form-row.three-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
 .form-input,
-.form-textarea,
-.form-select {
+.form-textarea {
   width: 100%;
   padding: 12px 16px;
   background-color: #2a2a2a;
@@ -72,115 +74,146 @@
 }
 
 .form-input:focus,
-.form-textarea:focus,
-.form-select:focus {
+.form-textarea:focus {
   outline: none;
   border-color: #ff4444;
   box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2);
 }
 
+.form-input[readonly] {
+  background-color: #1a1a1a;
+  cursor: not-allowed;
+}
+
 .form-textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 100px;
 }
 
-.form-select {
-  cursor: pointer;
-}
-
-.form-select option {
-  background-color: #2a2a2a;
-  color: white;
-}
-
+.confirm-btn,
 .submit-btn {
   background-color: #ff4444;
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 12px 16px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
   transition: background-color 0.2s ease;
-  width: 100%;
 }
 
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+}
+
+.confirm-btn:hover,
 .submit-btn:hover {
   background-color: #e63946;
 }
 
-.preview-section {
+.logo-preview-section {
   background-color: #3a3a3a;
   padding: 2rem;
   border-radius: 8px;
   border: 1px solid #555;
 }
 
-.preview-section h3 {
+.logo-preview-section h3 {
   color: white;
   margin-bottom: 1rem;
   font-size: 1.1rem;
   font-weight: 400;
 }
 
-.product-preview {
-  background-color: #2a2a2a;
-  padding: 1rem;
+.logo-container {
+  width: 200px;
+  height: 200px;
+  background-color: #e5e5e5;
   border-radius: 8px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 auto 1rem;
 }
 
-.preview-image {
+.logo-preview {
   max-width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-.preview-info h4 {
+.logo-placeholder {
+  color: #666;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-placeholder span {
+  font-size: 2rem;
+}
+
+.loja-info-preview {
+  text-align: center;
+  padding: 1rem;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+}
+
+.loja-info-preview h4 {
   color: white;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
 }
 
-.preview-info p {
+.loja-info-preview p {
   color: #ccc;
-  margin-bottom: 0.5rem;
   font-size: 0.9rem;
+  line-height: 1.4;
 }
 
-.preview-price {
-  display: block;
-  color: #ff4444;
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.preview-category {
-  display: inline-block;
-  background-color: #555;
-  color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  text-transform: capitalize;
+/* Responsividade */
+@media (max-width: 1024px) {
+  .loja-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .logo-preview-section {
+    order: -1;
+  }
 }
 
 @media (max-width: 768px) {
-  .cadastro-content {
-    grid-template-columns: 1fr;
+  .loja-content {
     padding: 1rem;
   }
   
-  .form-row.two-columns {
+  .form-row.two-columns,
+  .form-row.three-columns {
     grid-template-columns: 1fr;
   }
   
-  .produto-form,
-  .preview-section {
+  .loja-form-section,
+  .logo-preview-section {
     padding: 1.5rem;
+  }
+  
+  .logo-container {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-container {
+    width: 120px;
+    height: 120px;
   }
 }

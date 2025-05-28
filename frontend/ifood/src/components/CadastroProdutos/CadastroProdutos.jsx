@@ -21,6 +21,14 @@ const CadastroProdutos = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Produto cadastrado:', formData);
+    alert('Produto cadastrado com sucesso!');
+    setFormData({
+      nome: '',
+      descricao: '',
+      valor: '',
+      categoria: '',
+      linkImagem: ''
+    });
   };
 
   return (
@@ -31,6 +39,8 @@ const CadastroProdutos = () => {
       
       <div className="cadastro-content">
         <form onSubmit={handleSubmit} className="produto-form">
+          <h2>Cadastro de Produtos</h2>
+          
           <div className="form-row">
             <input
               type="text"
@@ -39,6 +49,7 @@ const CadastroProdutos = () => {
               value={formData.nome}
               onChange={handleChange}
               className="form-input full-width"
+              required
             />
           </div>
           
@@ -50,6 +61,7 @@ const CadastroProdutos = () => {
               onChange={handleChange}
               className="form-textarea full-width"
               rows="3"
+              required
             />
           </div>
           
@@ -61,6 +73,9 @@ const CadastroProdutos = () => {
               value={formData.valor}
               onChange={handleChange}
               className="form-input"
+              min="0"
+              step="0.01"
+              required
             />
             
             <select
@@ -68,11 +83,14 @@ const CadastroProdutos = () => {
               value={formData.categoria}
               onChange={handleChange}
               className="form-select"
+              required
             >
-              <option value="">Categoria</option>
+              <option value="">Selecione a Categoria</option>
               <option value="eletronicos">Eletrônicos</option>
               <option value="roupas">Roupas</option>
-              <option value="casa">Casa</option>
+              <option value="casa">Casa e Decoração</option>
+              <option value="esportes">Esportes</option>
+              <option value="livros">Livros</option>
             </select>
           </div>
           
@@ -86,10 +104,36 @@ const CadastroProdutos = () => {
               className="form-input full-width"
             />
           </div>
+          
+          <button type="submit" className="submit-btn">
+            Cadastrar Produto
+          </button>
         </form>
         
         <div className="preview-section">
-          {/* Preview do produto */}
+          <h3>Preview do Produto</h3>
+          <div className="product-preview">
+            {formData.linkImagem && (
+              <img 
+                src={formData.linkImagem} 
+                alt="Preview" 
+                className="preview-image"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            )}
+            <div className="preview-info">
+              <h4>{formData.nome || 'Nome do Produto'}</h4>
+              <p>{formData.descricao || 'Descrição do produto'}</p>
+              <span className="preview-price">
+                {formData.valor ? `R$ ${formData.valor}` : 'R$ 0,00'}
+              </span>
+              <span className="preview-category">
+                {formData.categoria || 'Categoria'}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

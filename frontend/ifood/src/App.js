@@ -3,23 +3,41 @@ import Menu from './components/Menu/Menu';
 import Dashboard from './components/Dashboard/Dashboard';
 import CadastroProdutos from './components/CadastroProdutos/CadastroProdutos';
 import TabelaRelatorios from './components/TabelaRelatorios/TabelaRelatorios';
+import Loja from './components/Loja/Loja';
 import './index.css';
 
-const App = () => {
+function App() {
   const [activeScreen, setActiveScreen] = useState('home');
+  const [menuCollapsed, setMenuCollapsed] = useState(false);
+
+  const handleNavigate = (screenId) => {
+    setActiveScreen(screenId);
+  };
+
+  const handleMenuToggle = (collapsed) => {
+    setMenuCollapsed(collapsed);
+  };
 
   const renderScreen = () => {
-    switch(activeScreen) {
+    switch (activeScreen) {
       case 'home':
         return <Dashboard />;
-      case 'relatorio':
-        return <TabelaRelatorios />;
-      case 'vendas':
-        return <div className="screen-placeholder">Tela de Vendas em desenvolvimento</div>;
       case 'produtos':
         return <CadastroProdutos />;
+      case 'relatorio':
+        return <TabelaRelatorios />;
       case 'loja':
-        return <div className="screen-placeholder">Tela da Loja em desenvolvimento</div>;
+        return <Loja />;
+      case 'vendas':
+        return (
+          <div className="screen-placeholder">
+            <div className="placeholder-content">
+              <h2>Vendas</h2>
+              <p>Esta funcionalidade está em desenvolvimento</p>
+              <div className="coming-soon">Em breve</div>
+            </div>
+          </div>
+        );
       default:
         return <Dashboard />;
     }
@@ -28,14 +46,15 @@ const App = () => {
   return (
     <div className="app-container">
       <Menu 
-        onNavigate={setActiveScreen} 
+        onNavigate={handleNavigate} 
         activeScreen={activeScreen}
+        onMenuToggle={handleMenuToggle}
       />
-      <main className="main-content">
+      <main className={`main-content ${menuCollapsed ? 'collapsed' : ''}`}>
         {renderScreen()}
       </main>
     </div>
   );
-};
+}
 
 export default App;

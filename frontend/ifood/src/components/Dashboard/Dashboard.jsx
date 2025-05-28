@@ -24,7 +24,7 @@ const Dashboard = () => {
         <div className="recent-orders-section">
           <h3>Pedidos Recentes</h3>
           <div className="orders-list">
-            {/* Lista de pedidos será implementada aqui */}
+            <p>Nenhum pedido recente encontrado.</p>
           </div>
         </div>
       </div>
