@@ -119,11 +119,12 @@ const CadastroProdutos = () => {
                 className="form-select"
                 required
               >
-                <option value="">Selecione uma categoria</option>
-                <option value="eletronicos">Eletrônicos</option>
-                <option value="roupas">Roupas</option>
-                <option value="casa">Casa e Jardim</option>
-                <option value="esportes">Esportes</option>
+                <option value="">Selecione uma categoria</option> 
+                <option value="eletronicos">Hamburgueria</option>
+                <option value="roupas">Comida japonês</option>
+                <option value="casa">Bebidas</option>
+                <option value="esportes">Pizzaria</option>
+                <option value="esportes">Açaí</option>
               </select>
             </div>
             
