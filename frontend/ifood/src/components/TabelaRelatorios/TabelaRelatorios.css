@@ -1,10 +1,10 @@
-.relatorio-vendas {
+.tabela-relatorios {
   flex: 1;
   background-color: #2d2d2d;
   min-height: 100vh;
 }
 
-.relatorio-header {
+.tabela-header {
   padding: 1rem;
   border-bottom: 1px solid #444;
   background-color: #2a2a2a;
@@ -13,68 +13,14 @@
   gap: 1rem;
 }
 
-.relatorio-header h2 {
+.tabela-header h2 {
   color: white;
   font-size: 1.2rem;
   font-weight: 400;
 }
 
-.relatorio-content {
+.tabela-content {
   padding: 2rem;
-}
-
-.filtros-section {
-  background-color: #3a3a3a;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #555;
-  margin-bottom: 2rem;
-}
-
-.filtros-container {
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  gap: 2rem;
-  align-items: center;
-}
-
-.filtro-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.filtro-group label {
-  color: #ccc;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.filtro-select,
-.filtro-input {
-  padding: 8px 12px;
-  background-color: #2a2a2a;
-  border: 1px solid #555;
-  border-radius: 4px;
-  color: white;
-  font-size: 14px;
-}
-
-.filtro-select:focus,
-.filtro-input:focus {
-  outline: none;
-  border-color: #ff4444;
-}
-
-.filtro-select option {
-  background-color: #2a2a2a;
-  color: white;
-}
-
-.total-vendas {
-  text-align: right;
-  color: #ff4444;
-  font-size: 1.1rem;
 }
 
 .table-wrapper {
@@ -83,53 +29,51 @@
   border: 1px solid #555;
 }
 
-.vendas-table {
+.relatorios-table {
   width: 100%;
   background-color: #3a3a3a;
   border-collapse: collapse;
-  min-width: 1000px;
+  min-width: 700px;
 }
 
-.vendas-table thead {
+.relatorios-table thead {
   background-color: #2a2a2a;
 }
 
-.vendas-table th {
-  padding: 1rem 0.5rem;
+.relatorios-table th {
+  padding: 1rem;
   text-align: left;
   color: white;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
   border-bottom: 1px solid #555;
-  white-space: nowrap;
 }
 
-.vendas-table td {
-  padding: 0.75rem 0.5rem;
+.relatorios-table td {
+  padding: 1rem;
   color: #ccc;
-  font-size: 13px;
+  font-size: 14px;
   border-bottom: 1px solid #555;
-  white-space: nowrap;
 }
 
-.vendas-table tbody tr:hover {
+.relatorios-table tbody tr:hover {
   background-color: #444;
 }
 
-.vendas-table tbody tr:last-child td {
+.relatorios-table tbody tr:last-child td {
   border-bottom: none;
 }
 
 .status {
   padding: 4px 8px;
   border-radius: 4px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   display: inline-block;
 }
 
-.status.concluida {
+.status.concluido {
   background-color: rgba(34, 197, 94, 0.2);
   color: #22c55e;
   border: 1px solid #22c55e;
@@ -141,7 +85,7 @@
   border: 1px solid #fbbf24;
 }
 
-.status.cancelada {
+.status.cancelado {
   background-color: rgba(239, 68, 68, 0.2);
   color: #ef4444;
   border: 1px solid #ef4444;
@@ -154,7 +98,7 @@
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   transition: background-color 0.2s ease;
 }
@@ -163,45 +107,15 @@
   background-color: #e63946;
 }
 
-.no-results {
-  text-align: center;
-  padding: 3rem;
-  color: #888;
-  background-color: #3a3a3a;
-  border-radius: 8px;
-  border: 1px solid #555;
-}
-
-.no-results p {
-  font-size: 1.1rem;
-  font-style: italic;
-}
-
-/* Responsividade */
-@media (max-width: 1024px) {
-  .filtros-container {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .total-vendas {
-    text-align: left;
-  }
-}
-
 @media (max-width: 768px) {
-  .relatorio-content {
+  .tabela-content {
     padding: 1rem;
   }
   
-  .filtros-section {
-    padding: 1rem;
-  }
-  
-  .vendas-table th,
-  .vendas-table td {
-    padding: 0.5rem 0.25rem;
-    font-size: 11px;
+  .relatorios-table th,
+  .relatorios-table td {
+    padding: 0.5rem;
+    font-size: 12px;
   }
   
   .detalhes-btn {
