@@ -1,0 +1,100 @@
+.cadastro-produtos {
+  flex: 1;
+  background-color: #2d2d2d;
+  min-height: 100vh;
+}
+
+.cadastro-header {
+  padding: 1rem;
+  border-bottom: 1px solid #444;
+  background-color: #2a2a2a;
+}
+
+.cadastro-content {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+}
+
+.produto-form {
+  background-color: #3a3a3a;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+}
+
+.form-row {
+  margin-bottom: 1.5rem;
+}
+
+.form-row.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #888;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #ff4444;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.form-select option {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.preview-section {
+  background-color: #3a3a3a;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+  min-height: 400px;
+}
+
+.preview-section::before {
+  content: "Preview do Produto";
+  color: #ccc;
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .cadastro-content {
+    grid-template-columns: 1fr;
+  }
+}

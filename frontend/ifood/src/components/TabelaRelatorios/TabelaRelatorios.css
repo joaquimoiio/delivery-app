@@ -1,0 +1,105 @@
+.tabela-relatorios {
+  flex: 1;
+  background-color: #2d2d2d;
+  min-height: 100vh;
+}
+
+.tabela-header {
+  padding: 1rem;
+  border-bottom: 1px solid #444;
+  background-color: #2a2a2a;
+}
+
+.tabela-content {
+  padding: 2rem;
+}
+
+.relatorios-table {
+  width: 100%;
+  background-color: #3a3a3a;
+  border-radius: 8px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid #555;
+}
+
+.relatorios-table thead {
+  background-color: #2a2a2a;
+}
+
+.relatorios-table th {
+  padding: 1rem;
+  text-align: left;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px solid #555;
+}
+
+.relatorios-table td {
+  padding: 1rem;
+  color: #ccc;
+  font-size: 14px;
+  border-bottom: 1px solid #555;
+}
+
+.relatorios-table tbody tr:hover {
+  background-color: #444;
+}
+
+.relatorios-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status.concluído {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+}
+
+.status.pendente {
+  background-color: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  border: 1px solid #fbbf24;
+}
+
+.status.cancelado {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+}
+
+.detalhes-btn {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.detalhes-btn:hover {
+  background-color: #e63946;
+}
+
+@media (max-width: 768px) {
+  .tabela-content {
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  
+  .relatorios-table {
+    min-width: 600px;
+  }
+}
