@@ -1,98 +1,15 @@
-.loja-container {
-  flex: 1;
-  background-color: var(--background-medium);
-  min-height: 100vh;
-}
-
-.loja-header {
-  padding: var(--spacing-md);
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--secondary-color);
+.endereco-input-group {
   display: flex;
+  gap: var(--spacing-sm);
   align-items: center;
-  gap: var(--spacing-md);
 }
 
-.loja-header h2 {
-  color: var(--text-primary);
-  font-size: 1.2rem;
-  font-weight: 400;
+.endereco-input-group .form-input {
+  flex: 1;
 }
 
-.loja-content {
-  padding: var(--spacing-xl);
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: var(--spacing-xl);
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.loja-form-section {
-  background-color: var(--background-light);
-  padding: var(--spacing-xl);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-}
-
-.loja-form {
-  width: 100%;
-}
-
-.form-row {
-  margin-bottom: var(--spacing-lg);
-}
-
-.form-row.two-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-md);
-}
-
-.form-row.three-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--spacing-md);
-}
-
-.form-input,
-.form-textarea {
-  width: 100%;
-  padding: 12px var(--spacing-md);
-  background-color: var(--secondary-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-sm);
-  color: var(--text-primary);
-  font-size: 14px;
-  font-family: inherit;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.form-input::placeholder,
-.form-textarea::placeholder {
-  color: var(--text-muted);
-}
-
-.form-input:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2);
-}
-
-.form-input[readonly] {
-  background-color: var(--background-dark);
-  cursor: not-allowed;
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.confirm-btn,
-.submit-btn {
-  background-color: var(--primary-color);
+.map-btn {
+  background-color: var(--success-color);
   color: var(--text-primary);
   border: none;
   padding: 12px var(--spacing-md);
@@ -101,118 +18,19 @@
   font-size: 14px;
   font-weight: 500;
   transition: background-color var(--transition-fast);
+  white-space: nowrap;
 }
 
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-}
-
-.confirm-btn:hover,
-.submit-btn:hover {
-  background-color: var(--primary-hover);
-}
-
-.logo-preview-section {
-  background-color: var(--background-light);
-  padding: var(--spacing-xl);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-}
-
-.logo-preview-section h3 {
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
-  font-size: 1.1rem;
-  font-weight: 400;
-}
-
-.logo-container {
-  width: 200px;
-  height: 200px;
-  background-color: #e5e5e5;
-  border-radius: var(--border-radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin: 0 auto var(--spacing-md);
-}
-
-.logo-preview {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.logo-placeholder {
-  color: #666;
-  text-align: center;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.logo-placeholder span {
-  font-size: 2rem;
-}
-
-.loja-info-preview {
-  text-align: center;
-  padding: var(--spacing-md);
-  background-color: var(--secondary-color);
-  border-radius: var(--border-radius);
-}
-
-.loja-info-preview h4 {
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
-  font-size: 1.1rem;
-}
-
-.loja-info-preview p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-@media (max-width: 1024px) {
-  .loja-content {
-    grid-template-columns: 1fr;
-  }
-
-  .logo-preview-section {
-    order: -1;
-  }
+.map-btn:hover {
+  background-color: #16a34a;
 }
 
 @media (max-width: 768px) {
-  .loja-content {
-    padding: var(--spacing-md);
+  .endereco-input-group {
+    flex-direction: column;
   }
-
-  .form-row.two-columns,
-  .form-row.three-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .loja-form-section,
-  .logo-preview-section {
-    padding: var(--spacing-lg);
-  }
-
-  .logo-container {
-    width: 150px;
-    height: 150px;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo-container {
-    width: 120px;
-    height: 120px;
+  
+  .map-btn {
+    width: 100%;
   }
 }

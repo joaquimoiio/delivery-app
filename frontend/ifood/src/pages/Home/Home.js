@@ -7,30 +7,37 @@ const Home = () => {
   return (
     <div className="home-page">
       <Navbar />
-      <div className="home-content">
-        <div className="hero-section">
-          <h1>Bem-vindo ao Delivery App</h1>
-          <p>Encontre os melhores restaurantes da sua região</p>
-        </div>
+      <main className="home-content">
+        <section className="hero-section">
+          <h1>Praticidade que transforma sua rotina</h1>
+          <p>Receba o que você precisa, onde estiver. Simples assim.</p>
+        </section>
         
-        <div className="categories-section">
+        <section className="categories-section">
           <h2>Categorias</h2>
           <div className="categories-grid">
-            <div className="category-card">
-              <h3>🍔 Hamburgueria</h3>
-              <p>Os melhores hambúrgueres da cidade</p>
+            <div className="category-card hamburgueria">
+              <h3>Hamburgueria</h3>
             </div>
-            <div className="category-card">
-              <h3>🍣 Japonês</h3>
-              <p>Sushi e pratos orientais autênticos</p>
+            
+            <div className="category-card comida-japonesa">
+              <h3>Comida Japonesa</h3>
             </div>
-            <div className="category-card">
-              <h3>🍕 Pizza</h3>
-              <p>Pizzas quentinhas direto do forno</p>
+            
+            <div className="category-card bebidas">
+              <h3>Bebidas</h3>
+            </div>
+            
+            <div className="category-card pizzaria">
+              <h3>Pizzaria</h3>
+            </div>
+            
+            <div className="category-card acai">
+              <h3>Açaí</h3>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
       <Footer />
     </div>
   );
