@@ -12,6 +12,10 @@ const Menu = ({ onNavigate, activeScreen }) => {
     { id: 'loja', label: 'Loja', icon: '🏪' }
   ];
 
+  const handleMenuClick = (itemId) => {
+    onNavigate(itemId);
+  };
+
   return (
     <div className={`menu-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <div className="menu-header">
@@ -28,7 +32,7 @@ const Menu = ({ onNavigate, activeScreen }) => {
           <button
             key={item.id}
             className={`menu-item ${activeScreen === item.id ? 'active' : ''}`}
-            onClick={() => onNavigate(item.id)}
+            onClick={() => handleMenuClick(item.id)}
           >
             <span className="menu-icon">{item.icon}</span>
             <span className="menu-text">{item.label}</span>

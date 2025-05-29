@@ -5,14 +5,15 @@ import CadastroProdutos from './components/CadastroProdutos/CadastroProdutos';
 import Relatorio from './components/Relatorio/Relatorio';
 import TabelaVendas from './components/TabelaVendas/TabelaVendas';
 import Loja from './components/Loja/Loja';
-import './index.css';
+import './Fornecedor.css';
 
-function App() {
-  const [activeScreen, setActiveScreen] = useState('home');
+const Fornecedor = () => {
+  const [activeComponent, setActiveComponent] = useState('home');
 
-  const renderScreen = () => {
-    switch(activeScreen) {
+  const renderComponent = () => {
+    switch (activeComponent) {
       case 'home':
+      case 'dashboard':
         return <Dashboard />;
       case 'relatorio':
         return <Relatorio />;
@@ -30,14 +31,14 @@ function App() {
   return (
     <div className="app-container">
       <Menu 
-        onNavigate={setActiveScreen} 
-        activeScreen={activeScreen}
+        onNavigate={setActiveComponent} 
+        activeScreen={activeComponent} 
       />
       <main className="main-content">
-        {renderScreen()}
+        {renderComponent()}
       </main>
     </div>
   );
-}
+};
 
-export default App;
+export default Fornecedor;

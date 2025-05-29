@@ -1,0 +1,56 @@
+/* components/Navbar/Navbar.css */
+.navbar {
+  background-color: var(--background-dark);
+  padding: 1rem 0;
+  border-bottom: 1px solid #333;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.navbar-brand .logo-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #ff6b35;
+}
+
+.navbar-button {
+  background-color: #ff6b35;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+  background-color: #e55a2b;
+}
