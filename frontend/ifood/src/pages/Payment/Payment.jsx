@@ -42,21 +42,20 @@ const Payment = () => {
   };
 
   const handleSelectCoordinates = (coordinatesData) => {
-    setDeliveryData(prev => ({
-      ...prev,
+    setDeliveryData({
+      endereco: coordinatesData.address || 'Endereço selecionado no mapa',
       nuLatitude: coordinatesData.latitude,
-      nuLongitude: coordinatesData.longitude,
-      endereco: coordinatesData.address || 'Endereço selecionado no mapa'
-    }));
+      nuLongitude: coordinatesData.longitude
+    });
+    setIsMapOpen(false);
   };
 
   const handleCoordinateChange = (field, value) => {
-    // Validação para coordenadas
     const coordenadaRegex = /^-?\d*\.?\d*$/;
     if (value !== '' && !coordenadaRegex.test(value)) {
       return;
     }
-    
+
     setDeliveryData(prev => ({
       ...prev,
       [field]: value
@@ -74,15 +73,14 @@ const Payment = () => {
       return;
     }
 
-    // Validar coordenadas
     const lat = parseFloat(deliveryData.nuLatitude);
     const lng = parseFloat(deliveryData.nuLongitude);
-    
+
     if (isNaN(lat) || lat < -90 || lat > 90) {
       alert('Latitude deve estar entre -90 e 90');
       return;
     }
-    
+
     if (isNaN(lng) || lng < -180 || lng > 180) {
       alert('Longitude deve estar entre -180 e 180');
       return;
@@ -113,8 +111,10 @@ const Payment = () => {
     return (
       <div className="payment-page">
         <Navbar />
-        <div className="loading-container">
-          <p>Carregando...</p>
+        <div className="payment-content">
+          <div className="payment-container">
+            <h1>Carregando...</h1>
+          </div>
         </div>
         <Footer />
       </div>
@@ -124,12 +124,10 @@ const Payment = () => {
   return (
     <div className="payment-page">
       <Navbar />
-      
       <div className="payment-content">
         <div className="payment-container">
-          <h1>Finalizar Pagamento</h1>
-          
-          {/* Resumo do Pedido */}
+          <h1>Finalizar Pedido</h1>
+
           <div className="order-summary">
             <h2>Resumo do Pedido</h2>
             <div className="order-item">
@@ -139,53 +137,52 @@ const Payment = () => {
                 <p>Quantidade: {orderData.quantity}</p>
                 <p>Preço unitário: {formatPrice(orderData.product.valor)}</p>
                 {orderData.observacao && (
-                  <p className="observation"><strong>Observações:</strong> {orderData.observacao}</p>
+                  <div className="observation">
+                    <strong>Observação:</strong> {orderData.observacao}
+                  </div>
                 )}
                 <p className="total-price">Total: {formatPrice(orderData.total)}</p>
               </div>
             </div>
           </div>
 
-          {/* Endereço de Entrega */}
           <div className="delivery-section">
-            <h2>Endereço de Entrega</h2>
-            
+            <h2>Dados de Entrega</h2>
             <div className="address-input-group">
               <input
                 type="text"
-                placeholder="Digite seu endereço de referência"
-                value={deliveryData.endereco}
-                onChange={(e) => setDeliveryData(prev => ({...prev, endereco: e.target.value}))}
                 className="address-input"
+                placeholder="Endereço de entrega"
+                value={deliveryData.endereco}
+                onChange={(e) => setDeliveryData(prev => ({ ...prev, endereco: e.target.value }))}
               />
               <button className="map-btn" onClick={handleOpenMap}>
                 📍 Selecionar no Mapa
               </button>
             </div>
-            
+
             <div className="coordinates-section">
               <h4>Coordenadas de Entrega</h4>
               <div className="coordinates-grid">
                 <div className="coordinate-field">
-                  <label>Latitude</label>
+                  <label>Latitude:</label>
                   <input
                     type="text"
-                    placeholder="Ex: -22.7000000"
+                    className="coordinate-input"
                     value={deliveryData.nuLatitude}
                     onChange={(e) => handleCoordinateChange('nuLatitude', e.target.value)}
-                    className="coordinate-input"
+                    placeholder="-23.5505"
                   />
                   <span className="coordinate-help">Entre -90 e 90</span>
                 </div>
-                
                 <div className="coordinate-field">
-                  <label>Longitude</label>
+                  <label>Longitude:</label>
                   <input
                     type="text"
-                    placeholder="Ex: -47.6000000"
+                    className="coordinate-input"
                     value={deliveryData.nuLongitude}
                     onChange={(e) => handleCoordinateChange('nuLongitude', e.target.value)}
-                    className="coordinate-input"
+                    placeholder="-46.6333"
                   />
                   <span className="coordinate-help">Entre -180 e 180</span>
                 </div>
@@ -193,52 +190,59 @@ const Payment = () => {
             </div>
           </div>
 
-          {/* Formas de Pagamento */}
           <div className="payment-methods">
             <h2>Forma de Pagamento</h2>
-            
             <div className="payment-options">
-              <label className={`payment-option ${paymentMethod === 'pix' ? 'selected' : ''}`}>
+              <div
+                className={`payment-option ${paymentMethod === 'pix' ? 'selected' : ''}`}
+                onClick={() => handlePaymentMethodChange('pix')}
+              >
                 <input
                   type="radio"
                   name="payment"
                   value="pix"
                   checked={paymentMethod === 'pix'}
-                  onChange={(e) => handlePaymentMethodChange(e.target.value)}
+                  onChange={() => handlePaymentMethodChange('pix')}
                 />
                 <div className="payment-info">
-                  <span className="payment-icon">💳</span>
-                  <span>PIX</span>
+                  <span className="payment-icon">📱</span>
+                  PIX
                 </div>
-              </label>
+              </div>
 
-              <label className={`payment-option ${paymentMethod === 'debito' ? 'selected' : ''}`}>
+              <div
+                className={`payment-option ${paymentMethod === 'cartao' ? 'selected' : ''}`}
+                onClick={() => handlePaymentMethodChange('cartao')}
+              >
                 <input
                   type="radio"
                   name="payment"
-                  value="debito"
-                  checked={paymentMethod === 'debito'}
-                  onChange={(e) => handlePaymentMethodChange(e.target.value)}
+                  value="cartao"
+                  checked={paymentMethod === 'cartao'}
+                  onChange={() => handlePaymentMethodChange('cartao')}
                 />
                 <div className="payment-info">
                   <span className="payment-icon">💳</span>
-                  <span>Cartão de Débito</span>
+                  Cartão de Crédito/Débito
                 </div>
-              </label>
+              </div>
 
-              <label className={`payment-option ${paymentMethod === 'credito' ? 'selected' : ''}`}>
+              <div
+                className={`payment-option ${paymentMethod === 'dinheiro' ? 'selected' : ''}`}
+                onClick={() => handlePaymentMethodChange('dinheiro')}
+              >
                 <input
                   type="radio"
                   name="payment"
-                  value="credito"
-                  checked={paymentMethod === 'credito'}
-                  onChange={(e) => handlePaymentMethodChange(e.target.value)}
+                  value="dinheiro"
+                  checked={paymentMethod === 'dinheiro'}
+                  onChange={() => handlePaymentMethodChange('dinheiro')}
                 />
                 <div className="payment-info">
-                  <span className="payment-icon">💳</span>
-                  <span>Cartão de Crédito</span>
+                  <span className="payment-icon">💰</span>
+                  Dinheiro
                 </div>
-              </label>
+              </div>
             </div>
           </div>
 
@@ -248,14 +252,12 @@ const Payment = () => {
         </div>
       </div>
 
-      {isMapOpen && (
-        <MapSelector
-          isOpen={isMapOpen}
-          onClose={() => setIsMapOpen(false)}
-          onSelectCoordinates={handleSelectCoordinates}
-        />
-      )}
-      
+      <MapSelector
+        isOpen={isMapOpen}
+        onClose={() => setIsMapOpen(false)}
+        onSelectCoordinates={handleSelectCoordinates}
+      />
+
       <Footer />
     </div>
   );
