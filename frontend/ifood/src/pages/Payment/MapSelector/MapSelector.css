@@ -1,0 +1,249 @@
+.map-selector-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.map-selector-modal {
+  background-color: #3a3a3a;
+  border-radius: 12px;
+  border: 1px solid #555;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.map-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #555;
+}
+
+.map-selector-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #555;
+  color: white;
+}
+
+.map-selector-search {
+  padding: 1.5rem;
+  border-bottom: 1px solid #555;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px;
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #ff4444;
+  box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2);
+}
+
+.search-input::placeholder {
+  color: #888;
+}
+
+.search-hint {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.map-container {
+  padding: 1.5rem;
+}
+
+.mock-map {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(45deg, #4a4a4a, #5a5a5a);
+  border: 2px solid #666;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mock-map:hover {
+  border-color: #ff4444;
+  background: linear-gradient(45deg, #5a5a5a, #6a6a6a);
+}
+
+.map-placeholder {
+  text-align: center;
+  color: white;
+}
+
+.map-placeholder h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.map-placeholder p {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.selected-marker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ff4444;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  40% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+  60% {
+    transform: translate(-50%, -50%) translateY(-5px);
+  }
+}
+
+.selected-address {
+  padding: 1.5rem;
+  background-color: #2a2a2a;
+  border-top: 1px solid #555;
+  border-bottom: 1px solid #555;
+}
+
+.selected-address strong {
+  color: white;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.selected-address p {
+  color: #cccccc;
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.map-selector-actions {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.manual-input-btn,
+.cancel-btn,
+.confirm-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.manual-input-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.manual-input-btn:hover {
+  background-color: #45a049;
+}
+
+.cancel-btn {
+  background-color: #666;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #777;
+}
+
+.confirm-btn {
+  background-color: #ff4444;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #e63946;
+}
+
+@media (max-width: 768px) {
+  .map-selector-modal {
+    width: 95%;
+    margin: 1rem;
+  }
+  
+  .map-container {
+    padding: 1rem;
+  }
+  
+  .mock-map {
+    height: 250px;
+  }
+  
+  .map-selector-actions {
+    flex-direction: column;
+  }
+  
+  .manual-input-btn,
+  .cancel-btn,
+  .confirm-btn {
+    width: 100%;
+  }
+}

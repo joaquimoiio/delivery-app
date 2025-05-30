@@ -1,43 +1,66 @@
+// src/pages/Home/Home.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
+import { useAuth } from '../../context/AuthContext';
 import './Home.css';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const { isLoggedIn, user } = useAuth();
+
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/categoria/${categoryId}`);
+  };
+
   return (
     <div className="home-page">
       <Navbar />
-      <main className="home-content">
-        <section className="hero-section">
+      
+      <div className="home-content">
+        <div className="hero-section">
           <h1>Praticidade que transforma sua rotina</h1>
           <p>Receba o que você precisa, onde estiver. Simples assim.</p>
-        </section>
-        
-        <section className="categories-section">
+        </div>
+
+        <div className="categories-section">
           <h2>Categorias</h2>
           <div className="categories-grid">
-            <div className="category-card hamburgueria">
-              <h3>Hamburgueria</h3>
+            <div 
+              className="category-card hamburgueria" 
+              onClick={() => handleCategoryClick('hamburgueria')}
+            >
+              Hamburgueria
             </div>
-            
-            <div className="category-card comida-japonesa">
-              <h3>Comida Japonesa</h3>
+            <div 
+              className="category-card comida-japonesa" 
+              onClick={() => handleCategoryClick('comida-japonesa')}
+            >
+              Comida Japonesa
             </div>
-            
-            <div className="category-card bebidas">
-              <h3>Bebidas</h3>
+            <div 
+              className="category-card pizzaria" 
+              onClick={() => handleCategoryClick('pizzaria')}
+            >
+              Pizzaria
             </div>
-            
-            <div className="category-card pizzaria">
-              <h3>Pizzaria</h3>
+            <div 
+              className="category-card acai" 
+              onClick={() => handleCategoryClick('acai')}
+            >
+              Açaí
             </div>
-            
-            <div className="category-card acai">
-              <h3>Açaí</h3>
+            <div 
+              className="category-card bebidas" 
+              onClick={() => handleCategoryClick('bebidas')}
+            >
+              Bebidas
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </div>
+      
       <Footer />
     </div>
   );
