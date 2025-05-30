@@ -1,21 +1,40 @@
 // src/components/Navbar/Navbar.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const { isLoggedIn, user, login, logout } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
+
+  // Fechar dropdown quando clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleLogin = () => {
-    // Simular login
     const userData = {
       name: 'Usuário Teste',
       email: 'usuario@teste.com',
+      phone: '(11) 99999-9999',
+      address: 'Parque Gramado, São Paulo, Brasil',
       avatar: null
     };
     login(userData);
@@ -24,63 +43,117 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
     setIsDropdownOpen(false);
+    navigate('/');
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      console.log('Buscando por:', searchTerm);
+    }
+  };
+
+  const handleDropdownItemClick = () => {
+    setIsDropdownOpen(false);
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
         {/* Logo */}
-        <div className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           <div className="logo-placeholder"></div>
-        </div>
+        </Link>
 
         {/* Menu de navegação */}
         <ul className="navbar-menu">
-          <li><a href="/" className="navbar-link">Hamburgueria</a></li>
-          <li><a href="/" className="navbar-link">Restaurante Japonês</a></li>
-          <li><a href="/" className="navbar-link">Pizzaria</a></li>
+          <li>
+            <Link to="/categoria/hamburgueria" className="navbar-link">
+              Hamburgueria
+            </Link>
+          </li>
+          <li>
+            <Link to="/categoria/comida-japonesa" className="navbar-link">
+              Restaurante Japonês
+            </Link>
+          </li>
+          <li>
+            <Link to="/categoria/pizzaria" className="navbar-link">
+              Pizzaria
+            </Link>
+          </li>
         </ul>
 
-        {/* Área direita - condicional baseada no login */}
+        {/* Área direita */}
         <div className="navbar-right">
           {isLoggedIn ? (
             <>
               {/* Barra de pesquisa */}
               <div className="search-container">
-                <input 
-                  type="text" 
-                  placeholder="Busca comida japonesa, Pizzaria" 
-                  className="search-input"
-                />
-                <button className="search-button">🔍</button>
+                <form onSubmit={handleSearch}>
+                  <input
+                    type="text"
+                    placeholder="Buscar restaurantes..."
+                    className="search-input"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <button type="submit" className="search-button">
+                    🔍
+                  </button>
+                </form>
               </div>
 
               {/* Dropdown do perfil */}
-              <div className="profile-dropdown">
-                <button className="profile-button" onClick={toggleDropdown}>
+              <div className="profile-dropdown" ref={dropdownRef}>
+                <button 
+                  className="profile-button" 
+                  onClick={toggleDropdown}
+                  aria-expanded={isDropdownOpen}
+                  aria-haspopup="true"
+                >
                   <div className="profile-avatar">
-                    {user?.name?.charAt(0) || 'U'}
+                    {user?.avatar ? (
+                      <img src={user.avatar} alt="Avatar" />
+                    ) : (
+                      <span>{user?.name?.charAt(0) || 'U'}</span>
+                    )}
                   </div>
                 </button>
 
                 {isDropdownOpen && (
                   <div className="dropdown-menu">
-                    <div className="dropdown-item">
-                      <a href="/profile">Seu Perfil</a>
+                    <div className="dropdown-user-info">
+                      <div className="dropdown-user-name">{user?.name || 'Usuário'}</div>
+                      <div className="dropdown-user-email">{user?.email || 'email@exemplo.com'}</div>
                     </div>
-                    <div className="dropdown-item">
-                      <a href="/orders">Histórico de Pedidos</a>
-                    </div>
+                    
                     <div className="dropdown-divider"></div>
+                    
                     <div className="dropdown-item">
-                      <button onClick={handleLogout}>Sair</button>
+                      <Link to="/perfil" onClick={handleDropdownItemClick}>
+                        👤 Meu Perfil
+                      </Link>
+                    </div>
+                    
+                    <div className="dropdown-item">
+                      <Link to="/historico-pedidos" onClick={handleDropdownItemClick}>
+                        📋 Histórico de Pedidos
+                      </Link>
+                    </div>
+                    
+                    <div className="dropdown-divider"></div>
+                    
+                    <div className="dropdown-item">
+                      <button onClick={handleLogout}>
+                        🚪 Sair
+                      </button>
                     </div>
                   </div>
                 )}
               </div>
             </>
           ) : (
-            /* Botão de login para usuários não logados */
             <button className="navbar-button" onClick={handleLogin}>
               Entrar/Cadastro
             </button>

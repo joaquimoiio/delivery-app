@@ -6,6 +6,8 @@ import Category from '../pages/Category/Category.jsx';
 import Store from '../pages/Store/Store.jsx';
 import Fornecedor from '../pages/Fornecedor/Fornecedor.js';
 import Payment from '../pages/Payment/Payment.jsx'
+import Profile from '../pages/Profile/Profile.jsx';
+import OrderHistory from '../pages/OrderHistory/OrderHistory.jsx';
 
 const AppRoutes = () => {
   return (
@@ -18,6 +20,8 @@ const AppRoutes = () => {
           <Route path="/fornecedor" element={<Fornecedor />} />
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/pagamento" element={<Payment />} />
+          <Route path="/perfil" element={<Profile />} />
+          <Route path="/historico-pedidos" element={<OrderHistory />} />
         </Routes>
       </Router>
     </AuthProvider>
